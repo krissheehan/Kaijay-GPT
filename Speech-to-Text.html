@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Speech-to-Text</title>
+  <script>
+    function startDictation() {
+      const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      recognition.lang = "en-US";
+      recognition.onresult = function(event) {
+        const text = event.results[0][0].transcript;
+        window.ReactNativeWebView.postMessage(text);
+      };
+      recognition.start();
+    }
+  </script>
+</head>
+<body>
+  <button onclick="startDictation()" style="font-size: 20px; padding: 10px;">🎤 Speak</button>
+</body>
+</html>
